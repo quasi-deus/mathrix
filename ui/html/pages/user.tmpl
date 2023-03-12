@@ -1,0 +1,39 @@
+{{define "title"}}Events{{end}}
+{{define "main"}}
+<div class="create">
+<a href="/user/create">Create User</a>
+</div>
+{{if .Users}}
+<div class="row">
+{{range .Users}}
+<div class="column">
+<button type="button" class="collapsible">{{.Name}}</button>
+<div class="content metadata">
+<div class='metadata'>
+<strong>{{.Name}}</strong><span>#{{.URN}}</span>
+</div>
+<pre>
+<table>
+<tr><td>Phone</td><td>:</td><td>{{.Phone}}</td></tr>
+<tr><td>Dept</td><td>:</td><td>{{.Dept}}</td></tr>
+<tr><td>Year</td><td>:</td><td>{{.Year}}</td></tr>
+<tr><td>Degree</td><td>:</td><td>{{.Degree}}</td></tr>
+<tr><td>Email</td><td>:</td><td>{{.Email}}</td></tr>
+<tr><td>Events</td><td>:</td><tr>
+</table>
+</pre>
+<div class='metadata'>
+<p>College: {{.College}}</p>
+<br>
+<p>Account Creation: {{humanDate .Created}}</p>
+<a class="create" href='/user/update/{{.UserID}}'>Edit User</a>
+<a class="create" href='/user/delete/{{.UserID}}'>Delete User</a>
+</div>
+</div>
+</div> 
+{{end}}
+</div>
+{{else}}
+<p>There's nothing to see here... yet!</p>
+{{end}}
+{{end}}

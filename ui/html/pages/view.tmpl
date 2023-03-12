@@ -1,0 +1,16 @@
+{{define "title"}}Event #{{.Event.EventID}}{{end}}
+{{define "main"}}
+	{{with .Event}}
+	<div class='event'>
+	<div class='metadata'>
+	<strong>{{.EventName}}</strong>
+	.<span>#{{.EventID}}</span>
+	</div>
+	<pre><code>{{.Content}}</code></pre>
+	<div class='metadata'>
+	<p>Date and Time: {{humanDate .EventDate}}</p>
+	<p>Venue: {{.Venue}}</p>
+	</div>
+	</div>
+	{{end}}
+{{end}}

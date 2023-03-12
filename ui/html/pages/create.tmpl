@@ -1,0 +1,46 @@
+{{define "title"}}Create a New Event{{end}}
+{{define "main"}}
+<form action='/event/create' method='POST'>
+<input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
+<div>
+<label>Event Name:</label>
+{{with .Form.FieldErrors.eventname}}
+<label class='error'>{{.}}</label>
+{{end}}
+<input type='hidden' name='eventid' value='{{.Form.EventID}}'>
+<input type='text' name='eventname' value='{{.Form.EventName}}'>
+</div>
+<div>
+<label>Content:</label>
+{{with .Form.FieldErrors.content}}
+<label class='error'>{{.}}</label>
+{{end}}
+<textarea name='content'>{{.Form.Content}}</textarea>
+</div>
+<div>
+<label>Event Venue:</label>
+{{with .Form.FieldErrors.venue}}
+<label class='error'>{{.}}</label>
+{{end}}
+<input type='text' name='venue' value='{{.Form.Venue}}'>
+</div>
+<div>
+<label>Technicality in:</label>
+{{with .Form.FieldErrors.technicality}}
+<label class='error'>{{.}}</label>
+{{end}}
+<input type='radio' name='technicality' value='true' {{if (eq .Form.Technicality true)}}checked{{end}}> Technical
+<input type='radio' name='technicality' value='false' {{if (eq .Form.Technicality false)}}checked{{end}}> Non-Technical
+</div>
+<div>
+<label>Event Date and Timing:</label>
+{{with .Form.FieldErrors.eventdate}}
+<label class='error'>{{.}}</label>
+{{end}}
+<input type="datetime-local" name='eventdate' value='{{.Form.EventDate}}'>
+</div>
+<div>
+<input type='submit' value='Create Event'>
+</div>
+</form>
+{{end}}

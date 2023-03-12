@@ -1,0 +1,37 @@
+{{define "title"}}Events{{end}}
+{{define "main"}}
+{{$iaz:=.IsAuthorized}}
+{{$ia:=.IsAuthenticated}}
+{{if $iaz}}
+<div class="create">
+<a href="/event/create">Create Event</a>
+</div>
+{{end}}
+{{if .Events}}
+<div class="row">
+{{range .Events}}
+<div class="column">
+<button type="button" class="collapsible">{{.EventName}}</button>
+<div class="content metadata">
+<div class='metadata'>
+<strong>{{.EventName}}</strong><span>#{{.EventID}}</span>
+</div>
+<pre><code>{{.Content}}</code></pre>
+<div class='metadata'>
+<p>Date and Time: {{humanDate .EventDate}}</p>
+<p>Venue: {{.Venue}}</p>
+{{if $iaz}}
+<a class="create" href='/event/update/{{.EventID}}'>Edit {{.EventName}}</a>
+{{end}}
+{{if $ia}}
+<a class="create" href='/event/add/{{.EventID}}'>Register for {{.EventName}}</a>
+{{end}}
+</div>
+</div>
+</div> 
+{{end}}
+</div>
+{{else}}
+<p>There's nothing to see here... yet!</p>
+{{end}}
+{{end}}
